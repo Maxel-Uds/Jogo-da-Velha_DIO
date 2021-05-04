@@ -1,0 +1,37 @@
+body {
+    text-align: center;
+}
+
+h1 {
+    font-family: cursive;
+    color: rgba(77, 76, 76, 0.933);
+}
+
+.quadrado {
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    background: #eeee;
+    display: inline-block;
+    padding: 40px;
+    font-size: 60px;
+    margin: 5px;
+    cursor: pointer;
+    color: #eeee;
+}
+
+.jogador, .vencedor, #jogador-selecionado, #vencedor-selecionado {
+    font-size: 30px;
+    margin-top: 10px;
+    font-family: cursive;
+    color: rgba(77, 76, 76, 0.933);
+}
+
+button {
+    margin-top: 18px;
+    width: 100px;
+    height: 30px;
+    background: #eeee;
+    cursor: pointer;
+    font-family: cursive;
+}
