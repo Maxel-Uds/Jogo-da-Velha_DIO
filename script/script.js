@@ -6,6 +6,7 @@ var pontosDeX = document.getElementById('Xpontos');
 var pontosDeO = document.getElementById('Opontos');
 var jogadorSelecionado = document.getElementById('jogador-selecionado');
 var quadrados = document.getElementsByClassName('quadrado');
+var aviso = document.getElementById('aviso');
 
 mudarJogador('X');
 
@@ -34,6 +35,7 @@ function escolherQuadrado(id)
         mudarJogador(jogador);
         checaVencedor()
         jogadas++;
+        checaVelha();
     }
     else
     {
@@ -96,7 +98,7 @@ function mudarVencedor(quadrado)
         Xpontos++;
         pontosDeX.innerHTML = `${Xpontos} Pontos`;
     }
-    else
+    else if(quadrado.innerHTML === 'O')
     {
         Opontos++;
         pontosDeO.innerHTML = `${Opontos} Pontos`;
@@ -128,16 +130,28 @@ function checaSequencia(quadrado1, quadrado2, quadrado3)
     return eigual;
 }
 
+function checaVelha()
+{
+    if(jogadas == 9 && vencedor == null)
+    {
+        aviso.innerHTML = 'Ih! Deu velha! Recomece o jogo';
+        setTimeout(() => {
+            aviso.innerHTML = 'Jogo da velha';
+        }, 1200);
+    }
+}
+
 function reiniciar()
 {
     if(vencedor == null && jogadas < 9)
     {
-        alert('O jogo não pode ser reiniciado antes de acabar!');
+
         return;
     }
 
     vencedor = null;
     jogadorSelecionado.innerHTML = `Jogador ${jogador}`;
+    jogadas = 0;
     for(var i = 1; i <= 9; i++)
     {
         var quadrado = document.getElementById(i);
