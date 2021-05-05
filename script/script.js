@@ -107,7 +107,7 @@ function mudarVencedor(quadrado)
     vencedor = quadrado.innerHTML;
     jogadorSelecionado.innerHTML = `Vencedor ${vencedor}`;
 
-    aviso.innerHTML = 'O jogo  acabou! Clique em reiniciar!';
+    aviso.innerHTML = 'O jogo  acabou! Aperte enter ou espaço pra recomeçar!';
     retomaTitulo();
 }
 
@@ -133,7 +133,7 @@ function checaVelha()
 {
     if(jogadas == 9 && vencedor == null)
     {
-        aviso.innerHTML = 'Ih! Deu velha! Recomece o jogo';
+        aviso.innerHTML = 'Ih! Deu velha! Aperte enter ou espaço pra recomeçar!';
         retomaTitulo();
     }
 }
@@ -142,28 +142,33 @@ function retomaTitulo()
 {
     setTimeout(() => {
         aviso.innerHTML = 'Jogo da velha';
-    }, 1500);
+    }, 1800);
 }
 
-function reiniciar()
+function reiniciar(event)
 {
-    if(vencedor == null && jogadas < 9)
+    if(event.keyCode == 32 || event.keyCode == 13)
     {
-        aviso.innerHTML = 'O jogo não pode ser reiniciado antes de acabar!';
-        retomaTitulo();
-        return;
-    }
+        if(vencedor == null && jogadas < 9)
+        {
+            aviso.innerHTML = 'O jogo não pode ser reiniciado antes de acabar!';
+            retomaTitulo();
+            return;
+        }
 
-    vencedor = null;
-    jogadorSelecionado.innerHTML = `Jogador ${jogador}`;
-    jogadas = 0;
-    for(var i = 1; i <= 9; i++)
-    {
-        var quadrado = document.getElementById(i);
-        quadrado.style.background = '#eee';
-        quadrado.style.color = '#eee';
-        quadrado.innerHTML = '-';
+        vencedor = null;
+        jogadorSelecionado.innerHTML = `Jogador ${jogador}`;
+        jogadas = 0;
+        for(var i = 1; i <= 9; i++)
+        {
+            var quadrado = document.getElementById(i);
+            quadrado.style.background = '#eee';
+            quadrado.style.color = '#eee';
+            quadrado.innerHTML = '-';
+        }
     }
 
     mudarJogador('X');
 }
+
+document.addEventListener('keydown', reiniciar)

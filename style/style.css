@@ -33,7 +33,7 @@ h1 {
 }
 
 .jogador, .vencedor, #jogador-selecionado {
-    font-size: 30px;
+    font-size: 60px;
     margin-top: 10px;
     font-family: cursive;
     color: rgba(77, 76, 76, 0.933);
