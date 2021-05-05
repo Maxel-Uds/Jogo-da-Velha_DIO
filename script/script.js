@@ -44,47 +44,35 @@ function mudarJogador(valor)
 
 function checaVencedor()
 {
-    var quadrado1 = document.getElementById('1');
-    var quadrado2 = document.getElementById('2');
-    var quadrado3 = document.getElementById('3');
-    var quadrado4 = document.getElementById('4');
-    var quadrado5 = document.getElementById('5');
-    var quadrado6 = document.getElementById('6');
-    var quadrado7 = document.getElementById('7');
-    var quadrado8 = document.getElementById('8');
-    var quadrado9 = document.getElementById('9');
+    var cubos = [, quadrado1 = document.getElementById('1'),
+    quadrado2 = document.getElementById('2'),
+    quadrado3 = document.getElementById('3'),
+    quadrado4 = document.getElementById('4'),
+    quadrado5 = document.getElementById('5'),
+    quadrado6 = document.getElementById('6'),
+    quadrado7 = document.getElementById('7'),
+    quadrado8 = document.getElementById('8'),
+    quadrado9 = document.getElementById('9')]
 
-    if(checaSequencia(quadrado1, quadrado2, quadrado3))
+    for(var i = 1; i <= 7; i += 3)
     {
-        mudaCorQuadrado(quadrado1, quadrado2, quadrado3);
-        mudarVencedor(quadrado1);
+        if(checaSequencia(cubos[i], cubos[i + 1], cubos[i + 2]))
+        {
+            mudaCorQuadrado(cubos[i], cubos[i + 1], cubos[i + 2]);
+            mudarVencedor(cubos[i]);
+        }
     }
-    else if(checaSequencia(quadrado4, quadrado5, quadrado6))
+
+    for(var i = 1; i <= 3; i++)
     {
-        mudaCorQuadrado(quadrado4, quadrado5, quadrado6);
-        mudarVencedor(quadrado4);
+        if(checaSequencia(cubos[i], cubos[i + 3], cubos[i + 6]))
+        {
+            mudaCorQuadrado(cubos[i], cubos[i + 3], cubos[i + 6]);
+            mudarVencedor(cubos[i]);
+        }
     }
-    else if(checaSequencia(quadrado7, quadrado8, quadrado9))
-    {
-        mudaCorQuadrado(quadrado7, quadrado8, quadrado9);
-        mudarVencedor(quadrado7);
-    }
-    else if(checaSequencia(quadrado1, quadrado4, quadrado7))
-    {
-        mudaCorQuadrado(quadrado1, quadrado4, quadrado7);
-        mudarVencedor(quadrado1);
-    }
-    else if(checaSequencia(quadrado2, quadrado5, quadrado8))
-    {
-        mudaCorQuadrado(quadrado2, quadrado5, quadrado8);
-        mudarVencedor(quadrado2);
-    }
-    else if(checaSequencia(quadrado3, quadrado6, quadrado9))
-    {
-        mudaCorQuadrado(quadrado3, quadrado6, quadrado9);
-        mudarVencedor(quadrado3);
-    }
-    else if(checaSequencia(quadrado1, quadrado5, quadrado9))
+
+    if(checaSequencia(quadrado1, quadrado5, quadrado9))
     {
         mudaCorQuadrado(quadrado1, quadrado5, quadrado9);
         mudarVencedor(quadrado1);
@@ -125,9 +113,14 @@ function checaSequencia(quadrado1, quadrado2, quadrado3)
 
 function reiniciar()
 {
+    if(vencedor == null)
+    {
+        alert('O jogo não pode ser reiniciado antes de acabar!');
+        return;
+    }
+
     vencedor = null;
     vencedorSelecionado.innerHTML = '';
-    
     for(var i = 1; i <= 9; i++)
     {
         var quadrado = document.getElementById(i);
