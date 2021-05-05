@@ -39,7 +39,8 @@ function escolherQuadrado(id)
     }
     else
     {
-        alert('Jogada inválida!\nEscolha outra posição');
+        aviso.innerHTML = 'Jogada inválida! Escolha outra posição';
+        retomaTitulo();
     }
 }
 
@@ -106,10 +107,8 @@ function mudarVencedor(quadrado)
     vencedor = quadrado.innerHTML;
     jogadorSelecionado.innerHTML = `Vencedor ${vencedor}`;
 
-
-    setTimeout(() => {
-        alert(`O jogo  acabou!\nO jogador ${vencedor} ganhou\nClique em reiniciar para começar um novo jogo!`);
-    }, 500);
+    aviso.innerHTML = 'O jogo  acabou! Clique em reiniciar!';
+    retomaTitulo();
 }
 
 function mudaCorQuadrado(quadrado1, quadrado2, quadrado3)
@@ -135,17 +134,23 @@ function checaVelha()
     if(jogadas == 9 && vencedor == null)
     {
         aviso.innerHTML = 'Ih! Deu velha! Recomece o jogo';
-        setTimeout(() => {
-            aviso.innerHTML = 'Jogo da velha';
-        }, 1200);
+        retomaTitulo();
     }
+}
+
+function retomaTitulo()
+{
+    setTimeout(() => {
+        aviso.innerHTML = 'Jogo da velha';
+    }, 1500);
 }
 
 function reiniciar()
 {
     if(vencedor == null && jogadas < 9)
     {
-
+        aviso.innerHTML = 'O jogo não pode ser reiniciado antes de acabar!';
+        retomaTitulo();
         return;
     }
 
