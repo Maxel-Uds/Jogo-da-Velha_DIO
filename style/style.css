@@ -4,7 +4,17 @@ body {
 
 h1 {
     font-family: cursive;
+    margin: 0px;
     color: rgba(77, 76, 76, 0.933);
+}
+
+.placar {
+    display: inline-block;
+    text-align: center;
+    font-size: 25px;
+    width: 200px;
+    background: #eeee;
+    font-family: cursive;
 }
 
 .quadrado {
@@ -21,7 +31,7 @@ h1 {
     color: #eeee;
 }
 
-.jogador, .vencedor, #jogador-selecionado, #vencedor-selecionado {
+.jogador, .vencedor, #jogador-selecionado {
     font-size: 30px;
     margin-top: 10px;
     font-family: cursive;

@@ -1,6 +1,10 @@
 var jogador, vencedor = null;
+var Opontos = 0;
+var Xpontos = 0;
+var jogadas = 0;
+var pontosDeX = document.getElementById('Xpontos');
+var pontosDeO = document.getElementById('Opontos');
 var jogadorSelecionado = document.getElementById('jogador-selecionado');
-var vencedorSelecionado = document.getElementById('vencedor-selecionado');
 var quadrados = document.getElementsByClassName('quadrado');
 
 mudarJogador('X');
@@ -29,6 +33,7 @@ function escolherQuadrado(id)
 
         mudarJogador(jogador);
         checaVencedor()
+        jogadas++;
     }
     else
     {
@@ -39,7 +44,7 @@ function escolherQuadrado(id)
 function mudarJogador(valor)
 {
     jogador = valor;
-    jogadorSelecionado.innerHTML = jogador;
+    jogadorSelecionado.innerHTML = `Jogador ${jogador}`;
 }
 
 function checaVencedor()
@@ -86,10 +91,22 @@ function checaVencedor()
 
 function mudarVencedor(quadrado)
 {
+    if(quadrado.innerHTML === 'X')
+    {
+        Xpontos++;
+        pontosDeX.innerHTML = `${Xpontos} Pontos`;
+    }
+    else
+    {
+        Opontos++;
+        pontosDeO.innerHTML = `${Opontos} Pontos`;
+    }
     vencedor = quadrado.innerHTML;
-    vencedorSelecionado.innerHTML = vencedor;
+    jogadorSelecionado.innerHTML = `Vencedor ${vencedor}`;
+
+
     setTimeout(() => {
-        alert(`O jogo  acabou!\nO jogador ${vencedor}\nClique em reiniciar para começar um novo jogo!`);
+        alert(`O jogo  acabou!\nO jogador ${vencedor} ganhou\nClique em reiniciar para começar um novo jogo!`);
     }, 500);
 }
 
@@ -113,14 +130,14 @@ function checaSequencia(quadrado1, quadrado2, quadrado3)
 
 function reiniciar()
 {
-    if(vencedor == null)
+    if(vencedor == null && jogadas < 9)
     {
         alert('O jogo não pode ser reiniciado antes de acabar!');
         return;
     }
 
     vencedor = null;
-    vencedorSelecionado.innerHTML = '';
+    jogadorSelecionado.innerHTML = `Jogador ${jogador}`;
     for(var i = 1; i <= 9; i++)
     {
         var quadrado = document.getElementById(i);

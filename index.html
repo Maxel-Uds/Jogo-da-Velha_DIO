@@ -11,6 +11,15 @@
 </head>
 <body>
     <h1>Jogo da Velha</h1>
+
+    <div class="placar">
+        <label class="X">X: </label>
+        <label id="Xpontos">0 Pontos</label>
+        <br>
+        <label class="O">O: </label>
+        <label id="Opontos"> 0 Pontos</label>
+    </div>
+
     <div>
         <div id="1" class="quadrado" onclick="escolherQuadrado(this.id)">-</div>
         <div id="2" class="quadrado" onclick="escolherQuadrado(this.id)">-</div>
@@ -30,13 +39,7 @@
     </div>
 
     <div>
-        <label class="jogador">Jogador:</label>
         <label id="jogador-selecionado"></label>
-    </div>
-
-    <div>
-        <label class="vencedor">Vencedor:</label>
-        <label id="vencedor-selecionado"></label>
     </div>
 
     <div>
