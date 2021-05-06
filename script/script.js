@@ -32,10 +32,9 @@ function escolherQuadrado(id)
             jogador = 'X';
         }
 
-        mudarJogador(jogador);
-        checaVencedor()
         jogadas++;
-        checaVelha();
+        mudarJogador(jogador);
+        checaVencedor();
     }
     else
     {
@@ -50,8 +49,15 @@ function escolherQuadrado(id)
 
 function mudarJogador(valor)
 {
-    jogador = valor;
-    jogadorSelecionado.innerHTML = `Jogador ${jogador}`;
+    if(jogadas == 9 && vencedor == null)
+    {
+        jogadorSelecionado.innerHTML = 'Ih! Deu velha! Aperte enter ou espaço pra recomeçar!';
+    }
+    else
+    {
+        jogador = valor;
+        jogadorSelecionado.innerHTML = `Jogador ${jogador}`;
+    }
 }
 
 function checaVencedor()
@@ -131,15 +137,6 @@ function checaSequencia(quadrado1, quadrado2, quadrado3)
     }
 
     return eigual;
-}
-
-function checaVelha()
-{
-    if(jogadas == 9 && vencedor == null)
-    {
-        aviso.innerHTML = 'Ih! Deu velha! Aperte enter ou espaço pra recomeçar!';
-        retomaTitulo();
-    }
 }
 
 function retomaTitulo()
