@@ -39,8 +39,12 @@ function escolherQuadrado(id)
     }
     else
     {
+        quadrado.style.background = 'red';
         aviso.innerHTML = 'Jogada inválida! Escolha outra posição';
         retomaTitulo();
+        setTimeout(() => {
+            quadrado.style.background = '#eeee';
+        }, 700);
     }
 }
 
